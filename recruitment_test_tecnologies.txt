@@ -1,0 +1,3 @@
+// PHP VERSION        			7.4.8
+// SQL VERSION        			10.4.13-MariaDB
+// Bootstrap VERSION          	v4.5.2

@@ -1,5 +1,8 @@
 <?php
-// VERSION        7.4.8
+echo phpversion();
+// PHP VERSION        7.4.8
+// SQL VERSION        10.4.13-MariaDB
+// Bootstrap          v4.5.2
 //
 //require_once('phpresources.php');
 //parseinit();
@@ -13,6 +16,11 @@ $conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n".
 $conn->query( "create database if not exists nautica;" );
 $conn->query( "use nautica;" );
 echo "".$conn->error."\n";
+
+
+$version = $conn->query( "select @@version;" );
+var_dump($version);
+
 echo "Ok.";
 
  exit();
