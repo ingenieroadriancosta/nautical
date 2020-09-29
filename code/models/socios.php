@@ -21,6 +21,10 @@ class socios{
         }
     }
 
+    function getall(){
+        return ($this->conn->query("select * from socios"));
+    }
+
     function fillall( $nombres, $apellidos, $tipo_documento, $documento, $telefono, $celular ) {
         $this->nombres = $nombres;
         $this->apellidos = $apellidos;

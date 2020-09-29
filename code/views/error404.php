@@ -11,6 +11,6 @@
     </head>
 <body>
     <h1>Not Found</h1>
-    <p>The requested resource <code class="url"><?php echo $RQURI."" ?></code> was not found on this server.</p>
+    <p>The requested resource <code class="url"><?php echo $request; ?></code> was not found on this server.</p>
 </body>
 </html>
