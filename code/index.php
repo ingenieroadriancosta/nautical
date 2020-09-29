@@ -1,12 +1,20 @@
 <?php
-echo phpversion();
 // PHP VERSION        7.4.8
 // SQL VERSION        10.4.13-MariaDB
 // Bootstrap          v4.5.2
 //
-//require_once('phpresources.php');
-//parseinit();
+require_once('phpresources.php');
+parseinit();
 
+
+
+require_once( "models/socios.php" );
+$socios = new socios();
+
+var_dump( $socios->consultar( 1234 ) );
+
+echo "\n\nExists:".$socios->error();
+exit(0);
 
 $dbhost = "localhost";
 $dbuser = "root";

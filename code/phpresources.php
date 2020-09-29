@@ -1,12 +1,9 @@
 <?php
 function parseinit(){
-    $request=$_SERVER['REQUEST_URI'];
-    if( strlen($request)>2 ){
-        if( $request[1]!='?' ){
-            include('views/error.html');
-        }
-        exit(0);
+    $request=@parse_url($_SERVER['REQUEST_URI'])['path'];
+    $endpoints = array("/","/login");
+    if (!in_array($RQURI, $endpoints)){
+        include("views/error404.php");
+        exit();
     }
 }
-
-
