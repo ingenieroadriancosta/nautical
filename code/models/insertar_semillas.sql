@@ -18,3 +18,7 @@ insert into barcos( matricula, nombres, idamarre, costoamarre, id_socios )
 values(
 12312, 'La martina', 123321, 5000000, 1234
 );
+insert into operaciones( matricula,fecha_salida,tiempo_salida,destino,id_socios_or_capitanes )
+VALUES(
+12312, '2020-06-01', '12:00:00', 'Miami', 1234
+)

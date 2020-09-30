@@ -37,13 +37,12 @@ create table capitanes(
 -- Crear tabla operaciones.
 -- el destino y los datos personales del Capit�n del barco, 
 create table if not exists operaciones(
-	matricula bigint not null primary key,
+	idoperaciones bigint not null primary key AUTO_INCREMENT,
+	matricula bigint not null,
 	fecha_salida Date,
 	tiempo_salida time,
 	destino varchar(128),
 	id_socios_or_capitanes bigint
-	
-	
 );
 -- hacer clave foranea de tabla operaciones con tabla socios.
 ALTER TABLE operaciones
@@ -51,17 +50,6 @@ ADD CONSTRAINT fk_foreign_matricula
 FOREIGN KEY (matricula)
 REFERENCES barcos(matricula);
 
--- hacer clave foranea de tabla operaciones con tabla capitanes.
-ALTER TABLE operaciones
-ADD CONSTRAINT fk_foreign_id_socios_or_capitanes
-FOREIGN KEY (id_socios_or_capitanes)
-REFERENCES capitanes(documento);
-
--- hacer clave foranea de tabla operaciones con tabla socios.
-ALTER TABLE operaciones
-ADD CONSTRAINT fk_foreign_documento
-FOREIGN KEY (id_socios_or_capitanes)
-REFERENCES socios(documento);
 
 
 
