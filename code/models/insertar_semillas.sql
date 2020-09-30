@@ -14,3 +14,7 @@ insert into socios( nombres, apellidos, tipo_documento, documento, telefono, cel
 values(
 'Alehana', 'Martinez', 0, 98728231, 3098836712, 3098131212
 );
+insert into barcos( matricula, nombres, idamarre, costoamarre, id_socios )
+values(
+12312, 'La martina', 123321, 5000000, 1234
+);

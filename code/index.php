@@ -12,7 +12,10 @@ require_once('phpresources.php');
 $request = parseinit($endpoints);
 require_once( "controllers/logincontroller.php" );
 require_once( "controllers/socioscontroller.php" );
+require_once( "controllers/barcoscontroller.php" );
 require_once( "models/socios.php" );
+require_once( "models/barcos.php" );
+
 //
 parsefail( $request, $endpoints );
 // 
@@ -24,7 +27,7 @@ switch( $request ){
     socioscontroller();
     break;
   case $endpoints[2]:
-    include("views/mainpage.php");exit();
+    barcoscontroller();
     break;
   case $endpoints[3]:
       include("views/mainpage.php");exit();

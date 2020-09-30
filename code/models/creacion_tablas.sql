@@ -10,9 +10,9 @@ create table if not exists socios(
 
 -- Crear tabla barcos.
 create table  if not exists barcos(
-	matricula int not null primary key,
-    nombre varchar(32) not null, 
-	idamarre int,
+	matricula bigint not null primary key,
+    nombres varchar(32) not null, 
+	idamarre bigint,
 	costoamarre int,
 	id_socios bigint not null
 );
@@ -35,9 +35,9 @@ create table capitanes(
 
 
 -- Crear tabla operaciones.
--- el destino y los datos personales del Capitán del barco, 
+-- el destino y los datos personales del Capitï¿½n del barco, 
 create table if not exists operaciones(
-	matricula int not null primary key,
+	matricula bigint not null primary key,
 	fecha_salida Date,
 	tiempo_salida time,
 	destino varchar(128),

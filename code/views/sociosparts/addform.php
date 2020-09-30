@@ -25,14 +25,18 @@
               <!-- -->
               <div class="col-md-3 mb-3">
                 <label for="validationDefault01">Nombres</label>
-                <input name="nombres" type="text" class="form-control"  placeholder="Nombres"
+                <input 
+                maxlength="31"  onkeydown="return /[a-z]/i.test(event.key)" 
+                name="nombres" type="text" class="form-control"  placeholder="Nombres"
                   value="" required>
               </div>
 
               <!-- -->
               <div class="col-md-3 mb-3">
                 <label for="validationDefault02">Apellidos</label>
-                <input name="apellidos" type="text" class="form-control" 
+                <input 
+                  maxlength="31"  onkeydown="return /[a-z]/i.test(event.key)" 
+                  name="apellidos" type="text" class="form-control" 
                   placeholder="Apellidos" value="" required>
               </div>
 
@@ -52,20 +56,29 @@
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label for="validationDefault03">Documento</label>
-                <input name="documento" type="text" class="form-control"  placeholder="Documento" required>
+                <input 
+                  maxlength="18"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
+                    name="documento" type="text" class="form-control"  placeholder="Documento" required>
               </div>
               
               <!-- -->
               <div class="col-md-4 mb-3">
                 <label for="validationDefault03">Telefono</label>
-                <input name="telefono" type="text" class="form-control"  placeholder="Telefono" required>
+                <input 
+                    maxlength="18"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
+                    name="telefono" type="text" class="form-control"  placeholder="Telefono" required>
               </div>
               <!-- -->
               
               <!-- -->
               <div class="col-md-4 mb-3">
                 <label for="validationDefault03">Celular</label>
-                <input name="celular" type="text" class="form-control"  placeholder="Telefono" required>
+                <input 
+                    maxlength="18"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
+                    name="celular" type="text" class="form-control"  placeholder="Telefono" required>
               </div>
             </div>
 

@@ -1,13 +1,12 @@
 <?php
-
-
-
-function socioscontroller(){
+function barcoscontroller(){
     require_once( "models/socios.php" );
+    require_once( "models/barcos.php" );
     $socios = new socios();
+    $barcos = new barcos();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ispostv = TRUE;
-        $arr = $socios->allatr;
+        $arr = $barcos->allatr;
         for( $i=0; $i<count($arr); $i++ ){
             $ispostv = $ispostv && isset($_POST[$arr[$i]]);
         }
@@ -16,20 +15,26 @@ function socioscontroller(){
                 $ispostv = $ispostv && strlen(isset($_POST[$arr[$i]]))>0;
             }
             if( $ispostv ){
-                if( $socios->exist($_POST[$arr[3]]) ){
-                    $_SESSION['msgerror'] = "Socio existente,\nAcción no aceptada.";
+                if( $barcos->exist($_POST[$arr[0]]) ){
+                    $_SESSION['msgerror'] = "Barco existente, Acción no aceptada.";
                     $_SESSION['posterror'] = true;
-                    header( "Location: / " );
+                    header( "Location: /barcos" );
                 }else{
-                    $res = $socios->insert(
+                    if( !$socios->exist($_POST[$arr[4]]) ){
+                        $_SESSION['msgerror'] = 
+                            "El propietario no existe, registre primero al socio y luego ingrese los datos del barco.";
+                        $_SESSION['posterror'] = true;
+                        header( "Location: /barcos" );
+                    }
+                    $res = $barcos->insert(
                         $_POST[$arr[0]],
                         $_POST[$arr[1]],
-                        (int)(strcmp($_POST[$arr[2]],"Cédula")!=0),
+                        $_POST[$arr[2]],
                         $_POST[$arr[3]],
                         $_POST[$arr[4]],
-                        $_POST[$arr[5]],
                     );
-                    echo $socios->error()."";
+                    // echo $socios->error()."";
+                    header( "Location: /barcos " );
                 }
             }else{
                 $_SESSION['msgerror'] = "Campos faltantes";
@@ -39,6 +44,7 @@ function socioscontroller(){
             $_SESSION['msgerror'] = "Transacción Invalida.";
             $_SESSION['posterror'] = true;
         }
+        header( "Location: /barcos " );
     }
-    include("views/sociospage.php");exit();
+    include("views/barcosparts/barcospage.php");exit();
 }

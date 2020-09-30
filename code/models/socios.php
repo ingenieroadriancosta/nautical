@@ -1,6 +1,8 @@
 <?php
 require_once( "models/createconnection.php" );
 class socios{
+    public $allatr=[   "nombres","apellidos", "tipo_documento", 
+                            "documento", "telefono", "celular"];
     private $nombres;
     private $apellidos;
     private $tipo_documento;
@@ -32,6 +34,18 @@ class socios{
         $this->documento = $documento;
         $this->telefono = $telefono;
         $this->celular = $celular;
+    }
+
+    function insert( $nombres, $apellidos, $tipo_documento, $documento, $telefono, $celular ) {
+        $query = 
+        "insert into socios( nombres, apellidos, tipo_documento, documento, telefono, celular )
+        values(
+            '$nombres', '$apellidos', $tipo_documento, $documento, $telefono, $celular
+        );
+        ";
+        echo $query."<br><br>";
+        $v2r = $this->conn->query($query);
+        return $v2r;
     }
 
     public function exist( $documento ){
