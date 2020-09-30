@@ -6,48 +6,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAUTICA</title>
+    <title>NAUTICA(OPERACIONES)</title>
     <link rel="stylesheet" href="views/static/css/bootstrap.css">
     <script src="views/static/js/jquery.js"></script>
     <script src="views/static/js/bootstrap.js"></script>
 </head>
 
-<body background="/views/static/img/Segunda-parte.png" style="background-size:100% 100vh;">
+<body background="/views/static/img/Primera-parte.jpg" style="background-size:100% 100vh;">
     <?php
     include("views/static/navbar.php");
-    include("views/barcosparts/addform.php");
+    include("views/operaciones/addform.php");
     ?>
     <!-- -->
     <!-- -->
-    <!-- <table style="border:solid 1px #000;background-color: #ffffff;"> -->
+    <!-- -->
     <div class="container">
         <div class="container mb-4">
             <input type="text" id="myInput" onkeyup="tablefuns()" placeholder="Buscar por matrícula..." title="Type in a name">
             <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">
-                Agregar barco
+                Agregar operación
             </button>
         </div>
         <table class="table table-dark" id="myTable">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Matrícula</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">ID Amarre</th>
-                <th scope="col">Valor del amarre</th>
-                <th scope="col">ID socio</th>
+                <th scope="col">Fecha de salida</th>
+                <th scope="col">Hora de salida</th>
+                <th scope="col">Destino</th>
+                <th scope="col">ID socio ó capitán</th>
             </tr>
             <?php
-            require_once("models/barcos.php");
-            $barcos = new barcos();
-            $sosall = $barcos->getall();
+            require_once("models/operaciones.php");
+            $operaciones = new operaciones();
+            $sosall = $operaciones->getall();
             $count = 1;
             while ($value = $sosall->fetch_array()) {
                 echo "<th scope='row'>$count</th>";
                 echo "<td>" . $value['matricula'] . "</td>";
-                echo "<td>" . $value['nombres'] . "</td>";
-                echo "<td>" . $value['idamarre'] . "</td>";
-                echo "<td>" . $value['costoamarre'] . "</td>";
-                echo "<td>" . $value['id_socios'] . "</td>";
+                echo "<td>" . $value['fecha_salida'] . "</td>";
+                echo "<td>" . $value['tiempo_salida'] . "</td>";
+                echo "<td>" . $value['destino'] . "</td>";
+                if( $value['idsocios']!=null ){
+                    echo "<td>" . $value['idsocios'] . "</td>";
+                }else{
+                    echo "<td>" . $value['idcapitanes'] . "</td>";
+                }
                 echo "</tr>";
                 $count++;
             }

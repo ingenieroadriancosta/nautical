@@ -1,3 +1,4 @@
+
 -- Crear tabla socios.
 create table if not exists socios(
     nombres varchar(16) not null,
@@ -42,7 +43,8 @@ create table if not exists operaciones(
 	fecha_salida Date,
 	tiempo_salida time,
 	destino varchar(128),
-	id_socios_or_capitanes bigint
+	idsocios bigint,
+	idcapitanes bigint
 );
 -- hacer clave foranea de tabla operaciones con tabla socios.
 ALTER TABLE operaciones
@@ -50,6 +52,17 @@ ADD CONSTRAINT fk_foreign_matricula
 FOREIGN KEY (matricula)
 REFERENCES barcos(matricula);
 
+-- hacer clave foranea de tabla operaciones con tabla capitanes.
+ALTER TABLE operaciones
+ADD CONSTRAINT fk_foreign_idcapitanes
+FOREIGN KEY (idcapitanes)
+REFERENCES capitanes(documento);
+
+-- hacer clave foranea de tabla operaciones con tabla socios.
+ALTER TABLE operaciones
+ADD CONSTRAINT fk_foreign_idsocios
+FOREIGN KEY (idsocios)
+REFERENCES socios(documento);
 
 
 

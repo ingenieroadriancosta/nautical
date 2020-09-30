@@ -33,6 +33,10 @@ function barcoscontroller(){
                         $_POST[$arr[3]],
                         $_POST[$arr[4]],
                     );
+                    if( !$res ){
+                        $_SESSION['msgerror'] = "ERROR INGRESANDO EL BARCO.";
+                        $_SESSION['posterror'] = true;
+                    }
                     // echo $socios->error()."";
                     header( "Location: /barcos " );
                 }

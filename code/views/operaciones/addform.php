@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ingresar nuevo barco</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ingresar operación</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -30,8 +30,12 @@
 
               <!-- -->
               <div class="col-md-6 mb-3">
-                <label for="validationDefault02">Nombre</label>
-                <input maxlength="31" onkeydown="return /[a-z ]/i.test(event.key)" name="nombres" type="text" class="form-control" placeholder="Nombre" value="" required>
+                <label for="example-date-input" >Fecha de salida</label>
+                <div class="col-10">
+                  <input name="fecha_salida" class="form-control" type="date" value="" 
+                      id="datePicker" 
+                      >
+                </div>
               </div>
               <!-- -->
             </div>
@@ -42,28 +46,30 @@
             <div class="form-row">
               <!-- -->
               <div class="col-md-6 mb-3">
-                <label for="validationDefault03">ID Amarre</label>
-                <input maxlength="18" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="idamarre" type="text" class="form-control" placeholder="ID Amarre" required>
+                <label for="example-date-input" >Hora de salida</label>
+                <div class="col-10">
+                  <input name="tiempo_salida" value="00:00:00" type="time" name="appt-time" value="13:30">
+                </div>
               </div>
+              <!-- -->
+              <!-- -->
               <!-- -->
               <div class="col-md-6 mb-3">
-                <label for="validationDefault03">Costo del amarre</label>
-                <input maxlength="18" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="costoamarre" type="text" class="form-control" placeholder="Costo del amarre" required>
+                <label for="validationDefault03">Destino</label>
+                <input maxlength="31"  onkeydown="return /[a-z ]/i.test(event.key)" 
+                     name="destino" type="text" class="form-control" placeholder="Destino" required>
               </div>
-
-
-
               <!-- -->
-
               <!-- -->
-
+              <!-- -->
+              <!-- -->
             </div>
 
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label for="validationDefault03">Documento del Propietario</label>
-                <input maxlength="18" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="id_socios" type="text" class="form-control" placeholder="Documento del propietario" required>
+                <label for="validationDefault03">Documento del comandante</label>
+                <input maxlength="18" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="idsocios" type="text" class="form-control" placeholder="Documento del propietario" required>
               </div>
             </div>
 
@@ -85,3 +91,8 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  document.getElementById('datePicker').valueAsDate = new Date();
+</script>

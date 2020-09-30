@@ -9,6 +9,7 @@
             <a class="nav-item nav-link active" href="/">Inicio <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="/socios">Socios </a>
             <a class="nav-item nav-link" href="/barcos">Barcos </a>
+            <a class="nav-item nav-link" href="/capitanes">Capitanes </a>
             <a class="nav-item nav-link" href="/operaciones">Operaciones </a>
             <button class="btn btn-secondary" id="clsssn" onclick="closeses()">Cerrar sesión </button>
             </div>

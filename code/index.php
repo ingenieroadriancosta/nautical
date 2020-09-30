@@ -7,15 +7,13 @@ require('allconfig.php');
 session_name("nautica");
 session_start(['cookie_lifetime' => ($timesession_sec)]);
 //
-
 require_once('phpresources.php');
 $request = parseinit($endpoints);
 require_once( "controllers/logincontroller.php" );
 require_once( "controllers/socioscontroller.php" );
 require_once( "controllers/barcoscontroller.php" );
-require_once( "models/socios.php" );
-require_once( "models/barcos.php" );
-
+require_once( "controllers/operacionescontroller.php" );
+require_once( "controllers/capitanescontroller.php" );
 //
 parsefail( $request, $endpoints );
 // 
@@ -30,7 +28,10 @@ switch( $request ){
     barcoscontroller();
     break;
   case $endpoints[3]:
-      include("views/mainpage.php");exit();
+      capitanescontroller();
+      break;
+  case $endpoints[4]:
+      operacionescontroller();
       break;
   default:
     header("Location: /");

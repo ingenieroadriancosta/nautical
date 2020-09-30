@@ -1,10 +1,10 @@
 <?php
-function socioscontroller(){
-    require_once( "models/socios.php" );
-    $socios = new socios();
+function capitanescontroller(){
+    require_once( "models/capitanes.php" );
+    $capitanes = new capitanes();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ispostv = TRUE;
-        $arr = $socios->allatr;
+        $arr = $capitanes->allatr;
         for( $i=0; $i<count($arr); $i++ ){
             $ispostv = $ispostv && isset($_POST[$arr[$i]]);
         }
@@ -13,23 +13,22 @@ function socioscontroller(){
                 $ispostv = $ispostv && strlen(isset($_POST[$arr[$i]]))>0;
             }
             if( $ispostv ){
-                if( $socios->exist($_POST[$arr[3]]) ){
-                    $_SESSION['msgerror'] = "Socio existente,\nAcción no aceptada.";
+                if( $capitanes->exist($_POST[$arr[3]]) ){
+                    $_SESSION['msgerror'] = "Capitán existente, Acción no aceptada.";
                     $_SESSION['posterror'] = true;
-                    header( "Location: / " );
+                    header( "Location: /capitanes" );
                 }else{
-                    $res = $socios->insert(
+                    $res = $capitanes->insert(
                         $_POST[$arr[0]],
                         $_POST[$arr[1]],
-                        (int)(strcmp($_POST[$arr[2]],"Cédula")!=0),
+                        (!( $_POST[$arr[2]]==="Cédula" )+0),
                         $_POST[$arr[3]],
-                        $_POST[$arr[4]],
-                        $_POST[$arr[5]],
                     );
                     if( !$res ){
-                        $_SESSION['msgerror'] = "ERROR INGRESANDO EL SOCIO.";
+                        $_SESSION['msgerror'] = "ERROR INGRESANDO EL CAPITAN.";
                         $_SESSION['posterror'] = true;
                     }
+                    header( "Location: /capitanes " );
                 }
             }else{
                 $_SESSION['msgerror'] = "Campos faltantes";
@@ -39,6 +38,7 @@ function socioscontroller(){
             $_SESSION['msgerror'] = "Transacción Invalida.";
             $_SESSION['posterror'] = true;
         }
+        header( "Location: /capitanes " );
     }
-    include("views/sociosparts/sociospage.php");exit();
+    include("views/capitanes/capitanespage.php");exit();
 }

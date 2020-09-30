@@ -1,5 +1,5 @@
 <?php
-$endpoints = array("/", "/socios", "/barcos", "/operaciones" );
+$endpoints = array("/", "/socios", "/barcos", "/capitanes", "/operaciones" );
 function parseinit($endpoints){
     $request=@parse_url($_SERVER['REQUEST_URI'])['path'];
     // $endpoints = array("","/","/login", "/socios", "/barcos", "/operaciones" );
@@ -27,6 +27,8 @@ function parsefail( $request, $endpoints ){
         if( isset($_SESSION['is_open']) ){
             if( $_SESSION['is_open']==FALSE && $request!=$endpoints[0] ){
                 header("Location: /");
+            }else{
+                $_SESSION['is_open'] = TRUE;
             }
         }
 }

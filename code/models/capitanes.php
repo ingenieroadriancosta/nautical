@@ -1,14 +1,13 @@
 <?php
+
 require_once( "models/createconnection.php" );
-class socios{
+class capitanes{
     public $allatr=[   "nombres","apellidos", "tipo_documento", 
-                            "documento", "telefono", "celular"];
+                            "documento"];
     private $nombres;
     private $apellidos;
     private $tipo_documento;
     private $documento;
-    private $telefono;
-    private $celular;
     private $conn;
 
     function __construct() {
@@ -24,23 +23,14 @@ class socios{
     }
 
     function getall(){
-        return ($this->conn->query("select * from socios"));
+        return ($this->conn->query("select * from capitanes"));
     }
 
-    function fillall( $nombres, $apellidos, $tipo_documento, $documento, $telefono, $celular ) {
-        $this->nombres = $nombres;
-        $this->apellidos = $apellidos;
-        $this->tipo_documento = $tipo_documento;
-        $this->documento = $documento;
-        $this->telefono = $telefono;
-        $this->celular = $celular;
-    }
-
-    function insert( $nombres, $apellidos, $tipo_documento, $documento, $telefono, $celular ) {
+    function insert( $nombres, $apellidos, $tipo_documento, $documento ) {
         $query = 
-        "insert into socios( nombres, apellidos, tipo_documento, documento, telefono, celular )
+        "insert into capitanes( nombres, apellidos, tipo_documento, documento )
         values(
-            '$nombres', '$apellidos', $tipo_documento, $documento, $telefono, $celular
+            '$nombres', '$apellidos', $tipo_documento, $documento
         );
         ";
         $v2r = $this->conn->query($query);
@@ -51,21 +41,19 @@ class socios{
         if(!$this->conn->ping()){
             return false;
         }
-        return ($this->conn->query("select socios.documento from socios where socios.documento=$documento ")->fetch_array()!=null);
+        return ($this->conn->query("select capitanes.documento from capitanes where capitanes.documento=$documento ")->fetch_array()!=null);
     }
 
     public function consultar( $documento ){
         if(!$this->conn->ping()){
             return false;
         }
-        $consu = $this->conn->query("select * from socios where socios.documento=$documento")->fetch_array();
+        $consu = $this->conn->query("select * from capitanes where capitanes.documento=$documento")->fetch_array();
         if( $consu!=null ){
             $this->nombres = $consu['nombres'];
             $this->apellidos = $consu['apellidos'];
             $this->tipo_documento = $consu['tipo_documento'];
             $this->documento = $consu['documento'];
-            $this->telefono = $consu['telefono'];
-            $this->celular = $consu['celular'];
         }
         return $consu!=null;
     }
@@ -75,3 +63,6 @@ class socios{
         return $this->conn->error;
     }
 }
+
+
+
